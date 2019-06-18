@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    build:
+      context: ./container/db
+      dockerfile: Dockerfile
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=development
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
