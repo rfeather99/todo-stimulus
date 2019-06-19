@@ -15,4 +15,9 @@ export default class extends Controller {
   connect() {
     this.outputTarget.textContent = 'Hello, Stimulus!'
   }
+
+  greet() {
+    const name = this.targets.find("name").value
+    alert(`Hello, ${name}!`)
+  }
 }
