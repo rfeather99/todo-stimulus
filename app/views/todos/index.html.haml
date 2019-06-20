@@ -3,16 +3,29 @@
 %table
   %thead
     %tr
-      %th
-      %th
-      %th
-
+      %th{colspan: 3} 操作
+      %th id
+      %th タスク名
+      %th ステータス
+      %th 担当者
+      %th 開始予定日
+      %th 終了予定日
+      %th 登録者
+      %th 更新者
   %tbody
-    - @todos.each do |todo|
+    - @todos.each do |todo| 
       %tr
         %td= link_to 'Show', todo
         %td= link_to 'Edit', edit_todo_path(todo)
         %td= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }
+        %td=todo.id
+        %td=todo.name
+        %td=todo.status
+        %td=todo.user&.name
+        %td=todo.scheduled_start_at
+        %td=todo.scheduled_end_at
+        %td=todo.created_by.name
+        %td=todo.modified_by.name
 
 %br
 

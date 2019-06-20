@@ -1,5 +1,12 @@
 %p#notice= notice
 
+%ul
+  %li=@todo.id
+  %li=@todo.name
+  %li=@todo.description
+  %li=@todo.status
+  %li=@todo.user&.name
+  
 
 = link_to 'Edit', edit_todo_path(@todo)
 \|
