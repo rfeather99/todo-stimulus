@@ -1,0 +1,12 @@
+.markdown-editor {
+  &.edit-mode {
+    div {
+      display: none;
+    }
+  }
+  &.preview-mode {
+    textarea {
+      display: none;
+    }
+  }
+}
