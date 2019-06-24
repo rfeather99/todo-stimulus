@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_19_141007) do
+ActiveRecord::Schema.define(version: 2019_06_24_141526) do
+
+  create_table "boards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "todos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -25,6 +31,8 @@ ActiveRecord::Schema.define(version: 2019_06_19_141007) do
     t.bigint "modified_by_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "board_id"
+    t.index ["board_id"], name: "index_todos_on_board_id"
     t.index ["created_by_id"], name: "index_todos_on_created_by_id"
     t.index ["modified_by_id"], name: "index_todos_on_modified_by_id"
     t.index ["user_id"], name: "index_todos_on_user_id"
@@ -36,4 +44,5 @@ ActiveRecord::Schema.define(version: 2019_06_19_141007) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "todos", "boards"
 end
