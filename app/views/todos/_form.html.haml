@@ -1,15 +1,26 @@
-= form_with model: @todo do |f|
-  - if @todo.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@todo.errors.count, "error")} prohibited this todo from being saved:"
-      %ul
-        - @todo.errors.full_messages.each do |message|
-          %li= message
-  = f.label :name, '', {}
-  = f.text_field :name, {}
-  = f.label :description, '', {}
-  = f.text_area :description, {}
-  = f.label :status
-  = f.text_field :status
-  .actions
-    = f.submit 'Save'
+- if @todo.errors.any?
+  #error_explanation
+    %h2= "#{pluralize(@todo.errors.count, "error")} prohibited this todo from being saved:"
+    %ul
+      - @todo.errors.full_messages.each do |message|
+        %li= message
+
+.card
+  = form_with model: @todo do |f|
+    .form-group.card-header
+      = f.text_field :name, class: 'form-control', placeholder: 'Title'
+    .card-body
+      .form-group.markdown-editor.edit-mode{data: {controller: 'markdown-editor'}}
+        %button.btn.btn-link{type: :button, data: {action: 'click->markdown-editor#editMode'}}
+          input
+        \|
+        %button.btn.btn-link{type: :button, data: {action: 'click->markdown-editor#previewMode'}}
+          preview
+        = f.text_area :description, class: 'form-control', data: {action: 'input->markdown-editor#edit', target: 'markdown-editor.txt'}
+        .markdown-body{data: {target: 'markdown-editor.viewer'}}
+      .form-group
+        = f.label :status, ''
+        = f.text_field :status, {class: 'form-control'}
+    .card-body.text-right
+      .actions
+        = f.submit 'Save', {class: 'btn btn-primary'}

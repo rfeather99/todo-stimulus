@@ -13,4 +13,31 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
 //= require_tree .
+
+/**
+ * アンカーリンクにdata-turbolinks="false"を付与する
+ */
+function addTurbolinksFalseToAnchorLinks() {
+  /** a要素を取得 */
+  const links = document.querySelectorAll('a');
+
+  links.forEach((link) => {
+    /** リンクがクリックされた時 */
+    link.addEventListener('click', (event) => {
+      /** リンクに「#」が含まれていた場合 */
+      if (link.href && link.href.match(/[#]/)) {
+        /** リンクにdata-turbolinks="false"を付与 */
+        event.target.setAttribute('data-turbolinks', 'false');
+      }
+    }, false);
+  });
+}
+
+/** ページロード時にaddTurbolinksFalseToAnchorLinksを呼ぶ */
+document.addEventListener('turbolinks:load', () => {
+  addTurbolinksFalseToAnchorLinks();
+}, false);

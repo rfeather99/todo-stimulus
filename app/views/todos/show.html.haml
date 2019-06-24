@@ -1,12 +1,15 @@
 %p#notice= notice
 
-%ul
-  %li=@todo.id
-  %li=@todo.name
-  %li=@todo.description
-  %li=@todo.status
-  %li=@todo.user&.name
-  
+.card
+  .card-header
+    =@todo.name
+  .card-body
+    .markdown-editor.preview-mode{data: {controller: 'markdown-editor'}}
+      %textarea{data: {target: 'markdown-editor.txt'}}
+        = @todo.description
+      .markdown-body{data: {target: 'markdown-editor.viewer'}}
+    =@todo.status
+    =@todo.user&.name
 
 = link_to 'Edit', edit_todo_path(@todo)
 \|
