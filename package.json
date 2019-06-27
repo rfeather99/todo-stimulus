@@ -7,7 +7,8 @@
     "highlight.js": "^9.15.8",
     "marked": "^0.6.2",
     "spectre.css": "^0.5.8",
-    "stimulus": "^1.1.1"
+    "stimulus": "^1.1.1",
+    "tui-editor": "^1.4.4-alpha.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.7.2"
