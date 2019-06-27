@@ -1,11 +1,11 @@
 .markdown-editor {
   &.edit-mode {
-    div {
+    .markdown-body {
       display: none;
     }
   }
   &.preview-mode {
-    textarea {
+    .CodeMirror {
       display: none;
     }
   }
