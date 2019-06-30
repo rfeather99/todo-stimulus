@@ -1,19 +1,30 @@
-%h1 Listing boards
+.row
+  %h1 Listing boards
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
+.row
+  - @boards.each do |board|
+    .board{data: {controller: 'board', board: {id: board.id}}}
+      .card.m-3{style: 'width: 10rem;', data: {action: 'click->board#openBoard'}}
+        .card-title
+          %button.btn.btn-link{data: {action: 'board#edit', target: 'board.edit'}}
+            %i.far.fa-edit
+          = link_to board, method: :delete, remote: true, data: { confirm: 'Are you sure?', target: 'board.delete' }, class: 'btn btn-link' do
+            %i.fas.fa-trash-alt
+        .card-body.text-center
+          %h3
+            -#= link_to board, class: 'btn btn-link' do
+            = board.name
+      .modal.fade{data: {target: 'board.editModal'}, role: :modal, aria: {hidden: true}, tabindex: -1}
+        .modal-dialog{role: :document}
+          = form_with model: board, method: :put, class: 'modal-content' do |f|
+            .modal-body
+              .form-group
+                = f.text_field :name, {class: 'form-control'}
+            .modal-footer
+              %button.btn.btn-action.btn-primary
+                %i.fas.fa-check
 
-  %tbody
-    - @boards.each do |board|
-      %tr
-        %td= link_to 'Show', board
-        %td= link_to 'Edit', edit_board_path(board)
-        %td= link_to 'Destroy', board, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Board', new_board_path
+  = form_with model: @board do |f|
+    = f.hidden_field :name, {}
+    %button.btn.btn-action.btn-primary.btn-large.s-circle.m-3
+      %i.fas.fa-plus
