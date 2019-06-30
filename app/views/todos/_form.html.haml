@@ -23,10 +23,6 @@
       .form-group
         = f.label :status, ''
         = f.text_field :status, {class: 'form-control'}
-      .form-group
-        %markdown{data: {controller:'markdown', markdown: {txt: @todo.description}}}
-          = f.text_area :description, data: {target: 'markdown.txt'}, style: 'display: none;'
-          %div{data: {target: 'markdown.editor'}}
     .card-body.text-right
       .actions
         = f.submit 'Save', {class: 'btn btn-primary'}

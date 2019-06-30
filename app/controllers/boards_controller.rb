@@ -5,6 +5,7 @@ class BoardsController < ApplicationController
   # GET /boards.json
   def index
     @boards = Board.all
+    @board = Board.new(name: 'new board')
   end
 
   # GET /boards/1
@@ -28,10 +29,10 @@ class BoardsController < ApplicationController
 
     respond_to do |format|
       if @board.save
-        format.html { redirect_to @board, notice: 'Board was successfully created.' }
+        format.html { redirect_to boards_url, notice: 'Board was successfully created.' }
         format.json { render :show, status: :created, location: @board }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @board.errors, status: :unprocessable_entity }
       end
     end
@@ -42,7 +43,7 @@ class BoardsController < ApplicationController
   def update
     respond_to do |format|
       if @board.update(board_params)
-        format.html { redirect_to @board, notice: 'Board was successfully updated.' }
+        format.html { redirect_to boards_url, notice: 'Board was successfully updated.' }
         format.json { render :show, status: :ok, location: @board }
       else
         format.html { render :edit }
@@ -69,6 +70,6 @@ class BoardsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def board_params
-      params.fetch(:board, {})
+      params.fetch(:board, {}).permit(:name)
     end
 end
