@@ -4,16 +4,14 @@
 .row
   - @boards.each do |board|
     .board{data: {controller: 'board', board: {id: board.id}}}
-      .card.m-3{style: 'width: 10rem;', data: {action: 'click->board#openBoard'}}
+      .card.m-3{data: {action: 'click->board#openBoard'}}
         .card-title
           %button.btn.btn-link{data: {action: 'board#edit', target: 'board.edit'}}
             %i.far.fa-edit
           = link_to board, method: :delete, remote: true, data: { confirm: 'Are you sure?', target: 'board.delete' }, class: 'btn btn-link' do
             %i.fas.fa-trash-alt
-        .card-body.text-center
-          %h3
-            -#= link_to board, class: 'btn btn-link' do
-            = board.name
+        .card-body
+          = board.name
       .modal.fade{data: {target: 'board.editModal'}, role: :modal, aria: {hidden: true}, tabindex: -1}
         .modal-dialog{role: :document}
           = form_with model: board, method: :put, class: 'modal-content' do |f|

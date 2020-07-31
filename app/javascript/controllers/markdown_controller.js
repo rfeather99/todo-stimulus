@@ -16,7 +16,8 @@ export default class extends Controller {
       previewStype: 'tab',
       usageStatistics: false,
     })
-    editor.on('change', (e) => {
+
+    editor.on('change', () => {
       this.txtTarget.innerHTML = editor.getMarkdown()
     })
   }

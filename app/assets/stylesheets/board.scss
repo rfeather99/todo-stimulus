@@ -1,0 +1,13 @@
+.board {
+  .card {
+    width: 10em;
+    cursor: pointer;
+
+    .card-body {
+      font-weight: bold;
+      padding: 0 0.8em 0.8em;
+      height: 5em;
+      overflow: hidden;
+    }
+  }
+}
