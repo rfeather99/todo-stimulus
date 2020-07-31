@@ -11,11 +11,13 @@
       = f.text_field :name, class: 'form-control', placeholder: 'Title'
     .card-body
       .form-group.markdown-editor.edit-mode{data: {controller: 'markdown-editor'}}
-        %button.btn.btn-link{type: :button, data: {action: 'click->markdown-editor#editMode'}}
-          input
-        \|
-        %button.btn.btn-link{type: :button, data: {action: 'click->markdown-editor#previewMode'}}
-          preview
+        %ul.nav.nav-tabs
+          %li.nav-item
+            %button.nav-link.btn.btn-link{type: :button, data: {action: 'click->markdown-editor#editMode'}}
+              input
+          %li.nav-item
+            %button.nav-link.btn.btn-link{type: :button, data: {action: 'click->markdown-editor#previewMode'}}
+              preview
         = f.text_area :description, class: 'form-control', data: {action: 'input->markdown-editor#edit', target: 'markdown-editor.txt'}
         .markdown-body{data: {target: 'markdown-editor.viewer'}}
       .form-group

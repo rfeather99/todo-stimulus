@@ -1,0 +1,21 @@
+.statuses {
+  display: flex;
+  align-items: stretch;
+  overflow-x: scroll;
+  min-height: 50vh;
+
+  .status {
+    .card {
+      width: 20em;
+      cursor: pointer;
+  
+      .card-body {
+        font-weight: bold;
+        padding: 0 0.8em 0.8em;
+        height: 5em;
+        overflow: hidden;
+      }
+    }
+  }
+}
+

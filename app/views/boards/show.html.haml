@@ -1,0 +1,15 @@
+%p#notice= notice
+.row
+  %h1=@board.name 
+
+.statuses{dropzone: :move}
+  - @board.statuses.each do |status|
+    .status.m-2{draggable: "true"}
+      .card
+        .card-body
+          .card-title
+            = status.name
+
+= link_to 'Edit', edit_board_path(@board)
+\|
+= link_to 'Back', boards_path

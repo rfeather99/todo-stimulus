@@ -1,12 +1,26 @@
 import { Controller } from "stimulus"
 import marked from 'marked/lib/marked.js'
 import hljs from 'highlight.js'
+import 'codemirror/lib/codemirror.css'
+import CodeMirror from 'codemirror'
+import 'codemirror/mode/gfm/gfm'
+import 'codemirror/addon/display/autorefresh'
 
 export default class extends Controller {
 
   static targets = ['viewer', 'txt']
 
   initialize() {
+    let editor = CodeMirror.fromTextArea(this.txtTarget,{
+      mode: 'gfm',
+      autoRefresh: true,
+      lineNumbers: true,
+      lineWrapping: true,
+      indentUnit: 2,
+      height: '100%',
+    })
+    editor.save()
+    editor.refresh()
     marked.setOptions({
         langPrefix: '',
         highlight: function(code, lang) {
