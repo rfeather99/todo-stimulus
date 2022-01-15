@@ -5,7 +5,7 @@
     "@rails/webpacker": "^4.0.7",
     "github-markdown-css": "^3.0.1",
     "highlight.js": "^9.15.8",
-    "marked": "^0.6.2",
+    "marked": "^4.0.10",
     "spectre.css": "^0.5.8",
     "stimulus": "^1.1.1",
     "tui-editor": "^1.4.4-alpha.0"
